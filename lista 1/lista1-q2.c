@@ -8,12 +8,6 @@
     saida:
         -imprimir/mostrar matriz original e transposta
     */
-
-
-
-
-
-
 int main (void){
     int linhas, colunas;
     printf ("informe a quantidade de linhas e colunas da matriz: ");
