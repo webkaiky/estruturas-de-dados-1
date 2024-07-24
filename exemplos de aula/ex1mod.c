@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define QUANTIDADE_ALUNOS 5
+#define QUANTIDADE_ALUNOS S
 
 typedef struct aluno
 {
