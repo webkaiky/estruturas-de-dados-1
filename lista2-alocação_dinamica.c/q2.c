@@ -1,49 +1,45 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-int main (void){
-    int linhas, colunas, count;
-    printf ("informe a quantidade de linhas e colunas da matriz: ");
-    scanf ("%d %d", &linhas, &colunas);
-
-    int ** matriz = (int **) malloc(linhas*sizeof(int*));
-    if(matriz[count]==NULL){
-        exit(1); // em caso de falha na alocação
+int main(void){
+    int linhas, colunas;
+    printf("Informe a quantidade de linhas e colunas: \n");
+    scanf("%d %d", &linhas, &colunas);
+    
+    int ** matriz = (int**) malloc(colunas*sizeof(int*));
+    if(matriz == NULL){
+        exit(1);
     }
-    for(int count=0; count<linhas; count++){
-        matriz [count] = (int*) malloc(colunas*sizeof(int));
-        if(matriz[count]==NULL){
+    for(int count=0; count<linhas; count++ ){
+        matriz[count] = (int*) malloc(colunas*sizeof(int));
+        if(matriz[count] == NULL){
             exit(1);
         }
+
     }
-//ler elementos da matriz
-    printf ("informe os elementos:\n ");
+    printf("Informe os elementos: \n");
     int linha, coluna;
-    for(int linha=0; linha<linhas; linha++){
-        for(int coluna=0; coluna<colunas; coluna++){
-            scanf("%d", &matriz[linha][coluna]);
+    for(linha=0; linha<linhas; linha++ ){
+        for(coluna=0; coluna<colunas; coluna++){
+            scanf("%d", &matriz[linha] [coluna]);
         }
     }
-//imprimir matriz original
-    printf ("\nmatriz original\n");
-        for(int linha=0; linha<linhas; linha++){
+        for(linha=0; linha<linhas; linha++ ){
             printf("\n");
-        for(int coluna=0; coluna<colunas; coluna++){
-            printf("%d\t", matriz[linha][coluna]);
+        for(coluna=0; coluna<colunas; coluna++){
+            printf("%d\t", matriz[linha] [coluna]);
         }
     }
-//transposta
-    printf ("matriz transposta:\n");
-        for(int linha=0; linha<linhas; linha++){
-        printf("\n");
-        for(int coluna=0; coluna<colunas; coluna++){
-            printf("%d\t", matriz[coluna][linha]);
+    printf("Matriz transposta:\n");
+            for(linha=0; linha<linhas; linha++ ){
+            printf("\n");
+        for(coluna=0; coluna<colunas; coluna++){
+            printf("%d\t", matriz[coluna] [linha]);
         }
     }
-//liberar matriz da memoria
-for(int linha=0; linha<linhas; linha++){
-  free(matriz[linha]);
-}
-free(matriz);
-return 0;
+    for(linha=0; linha<linhas; linha++){
+        free(matriz[linha]);
+
+    }
+    return(0);
 }
