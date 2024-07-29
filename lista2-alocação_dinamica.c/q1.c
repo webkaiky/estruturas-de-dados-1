@@ -1,34 +1,62 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-/*entrada: tamanho do vetor
-           elementos do vetor
-- alocar dinamicamente vetor
-- obter vetor inverso
-saida: vetor na ordem inversa*/
+#include<stdio.h>
 
 int main(void){
-    int tamanho;
-    printf("informe o tamanho do vetor:\t");
-    scanf("%d", &tamanho);
-    int *vetor = (int *)malloc(tamanho * sizeof(int));
-    if (vetor == NULL){
-        printf("no memory");
-        exit(1);
+    int N, contador, contador1;
+    // armazena a quantidade e porcentagem de mulheres que gostaram do produto
+    int mulheres = 0;
+    int porcentagemFem = 0;
+    float porcentagemtotalFem = 0;
+
+    // armazena a quantidade e porcentagem de homens que gostaram do produto
+    int homens = 0;
+    int porcentagemMasc = 0;
+    float porcentagemtotalMasc = 0;
+
+    // leitura da quantidade de pessoas que serão entrevistadas
+    printf ("digite a quantidade de pessoas que serão entrevistadas: ");
+    scanf("%d", &N);
+
+    // criação das matrizes para receber as respostas
+    char sexo[N];
+    char opiniao[N];
+
+    for(contador = 0; contador < N; contador++){
+        printf("informe o sexo (%d) [m/f]: ", contador);
+        scanf(" %c", &sexo[contador]);
+        printf("gostou do produto? (%d)[s/n] ", contador);
+        scanf(" %c", &opiniao[contador]);
     }
-    else{
-        printf("vetor alocado com sucesso!");
+    //iniciando o laço
+    for(contador1 = 0; contador1 < N; contador1++){
+        // contador para a quantidade e porcentagem de mulheres que gostaram
+        if (sexo[contador1] == 'f'){
+            mulheres++;
+            if (opiniao[contador1] == 's'){
+                porcentagemFem++;
+            }
+        
+        }
+        // contador para a quantidade e porcentagem de homens que não gostaram
+        if (sexo[contador1] == 'm'){
+            homens++;
+            if (opiniao[contador1] == 'n'){
+                porcentagemMasc++;
+            }
+        }
     }
-    // elementos do vetor
-    printf("digitar elementos do vetor:\n");
-    for (int count = 0; count < tamanho; count++){
-        scanf("%d", &vetor[count]);
+    // calculando a porcentagem feminina
+    if (mulheres != 0){
+        porcentagemtotalFem = (porcentagemFem * 100)/mulheres;
     }
-    // imprime vetor inverso
-    int count;
-    printf("vetor inverso: \n");
-    for (count = tamanho - 1; count >= 0; count--){
-        printf("%d\t", vetor[count]);
+    //calculando a porcentagem masculina
+    if (homens != 0){
+        porcentagemtotalMasc = (porcentagemMasc * 100)/homens;
     }
+    //imprime as informações
+    printf("-------informações sobre a pesquisa-------\n");
+    printf(" %d pessoas foram entrevistadas, dentre elas:\n ", N);
+    printf("%d sao mulheres e %d sao homens\n", mulheres, homens);
+    printf("um total de %.2f por cento das mulheres gostaram do produto\n ", porcentagemtotalFem);
+    printf("um total de %.2f por cento dos homens nao gostaram do produto\n ", porcentagemtotalMasc);
     return 0;
 }
